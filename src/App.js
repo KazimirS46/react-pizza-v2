@@ -7,8 +7,6 @@ import { PizzaBlock } from './components/PizzaBlock';
 
 import pizzas from './assets/db-pizzas.json';
 
-console.log(pizzas);
-
 function App() {
   return (
     <div className='wrapper'>
@@ -21,8 +19,9 @@ function App() {
           </div>
           <h2 className='content__title'>Все пиццы</h2>
           <div className='content__items'>
-            <PizzaBlock title={'Мега пицца'} price={500} />
-            <PizzaBlock title={'Кило пицца'} price={400} />
+            {pizzas.map((productCard, index) => (
+              <PizzaBlock key={productCard.productId} title={productCard.title} price={productCard.price} imageURL={productCard.imageUrl} />
+            ))}
           </div>
         </div>
       </div>
