@@ -17,10 +17,8 @@ export function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               {typesOfPizzas[type]}
             </li>
           ))}
-          {/* <li className='active'>тонкое</li> */}
         </ul>
         <ul>
-          {/* <li className='active'>26 см.</li> */}
           {sizes.map((size, i) => (
             <li key={i} onClick={() => setActiveSize(i)} className={activeSize === i ? 'active' : ''}>
               {size} см.
