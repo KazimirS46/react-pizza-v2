@@ -5,10 +5,10 @@ const typeOfSorting = ['популярности', 'цене', 'алфавиту
 export function Sort() {
   const [open, setOpen] = useState(false);
   const [activeType, setActiveType] = useState(0);
-  // const [activePoint, setActivePoint] = useState(0);
+  // const [activePoint, setActivePoint] = useState(0); 'альтернативный вариант'
 
   const selectActiveType = (index) => {
-    // setActivePoint(index);
+    // setActivePoint(index); 'альтернативный вариант'
     setActiveType(index);
     setOpen(false);
   };
