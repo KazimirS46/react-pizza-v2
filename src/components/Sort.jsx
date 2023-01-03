@@ -1,19 +1,18 @@
 import { useState } from 'react';
 
-const typeOfSorting = ['популярности', 'цене', 'алфавиту'];
+const typeOfSorting = [
+  { name: 'популярности', sort: 'rating' },
+  { name: 'цене', sort: 'price' },
+  { name: 'алфавиту', sort: 'title' },
+];
 
-export function Sort() {
+export function Sort({ value, onChangeSort }) {
   const [open, setOpen] = useState(false);
-  const [activeType, setActiveType] = useState(0);
-  // const [activePoint, setActivePoint] = useState(0); 'альтернативный вариант'
 
   const selectActiveType = (index) => {
-    // setActivePoint(index); 'альтернативный вариант'
-    setActiveType(index);
+    onChangeSort(index);
     setOpen(false);
   };
-
-  const activePoint = typeOfSorting[activeType];
 
   return (
     <div className='sort'>
@@ -30,15 +29,15 @@ export function Sort() {
             setOpen((prev) => !prev);
           }}
         >
-          {activePoint}
+          {value.name}
         </span>
       </div>
       {open && (
         <div className='sort__popup'>
           <ul>
             {typeOfSorting.map((type, i) => (
-              <li key={i} onClick={() => selectActiveType(i)} className={activeType === i ? 'active' : ''}>
-                {type}
+              <li key={i} onClick={() => selectActiveType(type)} className={value.sort === type.sort ? 'active' : ''}>
+                {type.name}
               </li>
             ))}
           </ul>
