@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './scss/app.scss';
@@ -8,9 +9,11 @@ import { Cart } from './pages/Cart';
 import { NotFoundBlock } from './components/NotFoundBlock';
 
 function App() {
+  const [searchValue, setSearchValue] = useState('Хуй');
+
   return (
     <div className='wrapper'>
-      <Header />
+      <Header value={searchValue} onChangeValue={setSearchValue} />
       <div className='content'>
         <Routes>
           <Route path='/' element={<Home />} />
