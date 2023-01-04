@@ -9,14 +9,14 @@ import { Cart } from './pages/Cart';
 import { NotFoundBlock } from './components/NotFoundBlock';
 
 function App() {
-  const [searchValue, setSearchValue] = useState('Хуй');
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className='wrapper'>
       <Header value={searchValue} onChangeValue={setSearchValue} />
       <div className='content'>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home searchValue={searchValue} />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<NotFoundBlock />} />
         </Routes>

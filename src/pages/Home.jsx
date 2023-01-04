@@ -10,7 +10,7 @@ const URL = {
   items: 'https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items',
 };
 
-export const Home = () => {
+export const Home = ({ searchValue }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
@@ -18,18 +18,30 @@ export const Home = () => {
     name: 'популярности',
     sort: 'rating',
   });
-  const order = 'desc';
+
+  const pizzas = items
+    // .filter((item) => {
+    //   if (item.title.toLowerCase().includes(searchValue.toLowerCase())) {
+    //     return true;
+    //   }
+    //   return false;
+    // })
+    .map((item) => <PizzaBlock key={item.productId} {...item} />);
+  const skeletons = [...new Array(6)].map((_, i) => <ItemPlaceholder key={i} />);
 
   useEffect(() => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const order = 'desc';
+    const search = searchValue ? `&search=${searchValue}` : '';
 
     setIsLoading(true);
-    axios.get(`${URL.items}?${category}&sortBy=${sortType.sort}&order=${order}`).then((res) => {
+    axios.get(`${URL.items}?${category}&sortBy=${sortType.sort}&order=${order}${search}`).then((res) => {
       setItems(res.data);
       setIsLoading(false);
     });
     window.scrollTo(0, 0);
-  }, [categoryId, sortType]);
+  }, [categoryId, sortType, searchValue]);
+
   return (
     <div className='container'>
       <div className='content__top'>
@@ -47,7 +59,7 @@ export const Home = () => {
         />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
-      <div className='content__items'>{isLoading ? [...new Array(6)].map((_, i) => <ItemPlaceholder key={i} />) : items.map((item) => <PizzaBlock key={item.productId} {...item} />)}</div>
+      <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
     </div>
   );
 };
