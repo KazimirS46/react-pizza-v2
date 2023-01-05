@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import { Categories } from '../components/Categories';
@@ -6,12 +6,13 @@ import { Sort } from '../components/Sort';
 import { PizzaBlock } from '../components/PizzaBlock';
 import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
 import { Pagination } from '../components/Pagination';
+import { SearchContext } from '../App';
 
 const URL = {
   items: 'https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items',
 };
 
-export const Home = ({ searchValue }) => {
+export const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
@@ -20,6 +21,7 @@ export const Home = ({ searchValue }) => {
     sort: 'rating',
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const { searchValue } = useContext(SearchContext);
 
   const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
   const skeletons = [...new Array(6)].map((_, i) => <ItemPlaceholder key={i} />);

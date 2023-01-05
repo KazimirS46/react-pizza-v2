@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+
 import styles from './Search.module.scss';
 
-export const Search = ({ value, onChangeValue }) => {
+import { SearchContext } from '../../App';
+
+export const Search = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
   return (
     <div className={styles.root}>
       <svg className={styles.searchIcon} id='Glyph' version='1.1' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
@@ -9,9 +15,9 @@ export const Search = ({ value, onChangeValue }) => {
           id='XMLID_223_'
         />
       </svg>
-      <input className={styles.input} placeholder='Поиск пиццы...' value={value} onChange={(evt) => onChangeValue(evt.target.value)} />
-      {value && (
-        <svg className={styles.closeIcon} onClick={() => onChangeValue('')} height='14px' version='1.1' viewBox='0 0 14 14' width='14px' xmlns='http://www.w3.org/2000/svg'>
+      <input className={styles.input} placeholder='Поиск пиццы...' value={searchValue} onChange={(evt) => setSearchValue(evt.target.value)} />
+      {searchValue && (
+        <svg className={styles.closeIcon} onClick={() => setSearchValue('')} height='14px' version='1.1' viewBox='0 0 14 14' width='14px' xmlns='http://www.w3.org/2000/svg'>
           <g fill='none' id='Page-1' stroke='none'>
             <g fill='#000000' id='Core' transform='translate(-341.000000, -89.000000)'>
               <g id='close' transform='translate(341.000000, 89.000000)'>
