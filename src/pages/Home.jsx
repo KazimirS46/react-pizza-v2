@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 import { Categories } from '../components/Categories';
 import { Sort } from '../components/Sort';
@@ -13,9 +14,14 @@ const URL = {
 };
 
 export const Home = () => {
+  const categoryId = useSelector((state) => state.filter.categoryId);
+
+  console.log('redux state', categoryId);
+  const setCategoryId = () => {};
+
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
+  // const [categoryId, setCategoryId] = useState(0);
   const [sortType, setSortType] = useState({
     name: 'популярности',
     sort: 'rating',

@@ -1,32 +1,21 @@
-// import { createContext, useState } from 'react';
-// import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { createContext, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import './scss/app.scss';
 
-// import { Header } from './components/Header';
-// import { Home } from './pages/Home';
-// import { Cart } from './pages/Cart';
-// import { NotFoundBlock } from './components/NotFoundBlock';
-import { increment, decrement } from './redux/slices/filterSlice';
+import { Header } from './components/Header';
+import { Home } from './pages/Home';
+import { Cart } from './pages/Cart';
+import { NotFoundBlock } from './components/NotFoundBlock';
 
-// export const SearchContext = createContext();
+export const SearchContext = createContext();
 
 function App() {
-  // const [searchValue, setSearchValue] = useState('');
-  const count = useSelector((state) => state.counter.count);
-  const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className='wrapper'>
-      <button aria-label='Increment value' onClick={() => dispatch(increment())}>
-        Increment
-      </button>
-      <span>{count}</span>
-      <button aria-label='Decrement value' onClick={() => dispatch(decrement())}>
-        Decrement
-      </button>
-      {/* <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className='content'>
           <Routes>
@@ -35,7 +24,7 @@ function App() {
             <Route path='*' element={<NotFoundBlock />} />
           </Routes>
         </div>
-      </SearchContext.Provider> */}
+      </SearchContext.Provider>
     </div>
   );
 }
