@@ -1,11 +1,33 @@
-import { useContext } from 'react';
+import debounce from 'lodash.debounce';
+import { useCallback, useContext, useRef, useState } from 'react';
 
 import styles from './Search.module.scss';
 
 import { SearchContext } from '../../App';
 
 export const Search = () => {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const [value, setValue] = useState('');
+  const { setSearchValue } = useContext(SearchContext);
+  const searchField = useRef();
+
+  const clearSearchField = () => {
+    setSearchValue('');
+    setValue('');
+    searchField.current.focus();
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const updateSearchInput = useCallback(
+    debounce((value) => {
+      setSearchValue(value);
+    }, 250),
+    []
+  );
+
+  const onChangeSearchInput = (event) => {
+    setValue(event.target.value);
+    updateSearchInput(event.target.value);
+  };
 
   return (
     <div className={styles.root}>
@@ -15,9 +37,9 @@ export const Search = () => {
           id='XMLID_223_'
         />
       </svg>
-      <input className={styles.input} placeholder='Поиск пиццы...' value={searchValue} onChange={(evt) => setSearchValue(evt.target.value)} />
-      {searchValue && (
-        <svg className={styles.closeIcon} onClick={() => setSearchValue('')} height='14px' version='1.1' viewBox='0 0 14 14' width='14px' xmlns='http://www.w3.org/2000/svg'>
+      <input ref={searchField} className={styles.input} placeholder='Поиск пиццы...' value={value} onChange={onChangeSearchInput} />
+      {value && (
+        <svg className={styles.closeIcon} onClick={clearSearchField} height='14px' version='1.1' viewBox='0 0 14 14' width='14px' xmlns='http://www.w3.org/2000/svg'>
           <g fill='none' id='Page-1' stroke='none'>
             <g fill='#000000' id='Core' transform='translate(-341.000000, -89.000000)'>
               <g id='close' transform='translate(341.000000, 89.000000)'>

@@ -8,7 +8,7 @@ import { PizzaBlock } from '../components/PizzaBlock';
 import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
 import { Pagination } from '../components/Pagination';
 import { SearchContext } from '../App';
-import { setCategoryId } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurentPage } from '../redux/slices/filterSlice';
 
 const URL = {
   items: 'https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items',
@@ -16,16 +16,19 @@ const URL = {
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sort;
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
 
+  const onChangePage = (number) => {
+    dispatch(setCurentPage(number));
+  };
+
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const { searchValue } = useContext(SearchContext);
 
   const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
@@ -52,7 +55,7 @@ export const Home = () => {
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
