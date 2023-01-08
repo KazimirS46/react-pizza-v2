@@ -17,7 +17,7 @@ const URL = {
 export const Home = () => {
   const dispatch = useDispatch();
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
-  const sortType = sort.sort;
+  const sortType = sort.sortProperty;
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -38,6 +38,7 @@ export const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const order = 'desc';
     const search = searchValue ? `&search=${searchValue}` : '';
+    console.log(sortType);
 
     setIsLoading(true);
     axios.get(`${URL.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`).then((res) => {

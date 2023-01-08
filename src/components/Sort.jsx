@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSort } from '../redux/slices/filterSlice';
 
 const typeOfSorting = [
-  { name: 'популярности', sort: 'rating' },
-  { name: 'цене', sort: 'price' },
-  { name: 'алфавиту', sort: 'title' },
+  { name: 'популярности', sortProperty: 'rating' },
+  { name: 'цене', sortProperty: 'price' },
+  { name: 'алфавиту', sortProperty: 'title' },
 ];
 
 export function Sort() {
@@ -14,6 +14,7 @@ export function Sort() {
   const [open, setOpen] = useState(false);
 
   const selectActiveType = (type) => {
+    console.log(type);
     dispatch(setSort(type));
     setOpen(false);
   };
@@ -40,7 +41,7 @@ export function Sort() {
         <div className='sort__popup'>
           <ul>
             {typeOfSorting.map((type, i) => (
-              <li key={i} onClick={() => selectActiveType(type)} className={sort.sort === type.sort ? 'active' : ''}>
+              <li key={i} onClick={() => selectActiveType(type)} className={sort.sortProperty === type.sortProperty ? 'active' : ''}>
                 {type.name}
               </li>
             ))}
