@@ -1,23 +1,32 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
+import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { Categories } from '../components/Categories';
-import { Sort } from '../components/Sort';
+import { Sort, typeOfSorting } from '../components/Sort';
 import { PizzaBlock } from '../components/PizzaBlock';
 import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
 import { Pagination } from '../components/Pagination';
 import { SearchContext } from '../App';
-import { setCategoryId, setCurentPage } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurentPage, setFilters } from '../redux/slices/filterSlice';
 
 const URL = {
   items: 'https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items',
 };
 
 export const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sortProperty;
+
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { searchValue } = useContext(SearchContext);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -27,25 +36,52 @@ export const Home = () => {
     dispatch(setCurentPage(number));
   };
 
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { searchValue } = useContext(SearchContext);
-
   const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
   const skeletons = [...new Array(6)].map((_, i) => <ItemPlaceholder key={i} />);
 
   useEffect(() => {
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const order = 'desc';
-    const search = searchValue ? `&search=${searchValue}` : '';
-    console.log(sortType);
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sortType,
+        categoryId,
+        currentPage,
+      });
 
-    setIsLoading(true);
-    axios.get(`${URL.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`).then((res) => {
-      setItems(res.data);
-      setIsLoading(false);
-    });
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sortType, currentPage, navigate]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = typeOfSorting.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
+    if (!isSearch.current) {
+      const category = categoryId > 0 ? `category=${categoryId}` : '';
+      const order = 'desc';
+      const search = searchValue ? `&search=${searchValue}` : '';
+
+      setIsLoading(true);
+      axios.get(`${URL.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`).then((res) => {
+        setItems(res.data);
+        setIsLoading(false);
+      });
+    }
+    isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
   return (

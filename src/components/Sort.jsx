@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSort } from '../redux/slices/filterSlice';
 
-const typeOfSorting = [
+export const typeOfSorting = [
   { name: 'популярности', sortProperty: 'rating' },
   { name: 'цене', sortProperty: 'price' },
   { name: 'алфавиту', sortProperty: 'title' },
@@ -14,7 +14,6 @@ export function Sort() {
   const [open, setOpen] = useState(false);
 
   const selectActiveType = (type) => {
-    console.log(type);
     dispatch(setSort(type));
     setOpen(false);
   };
