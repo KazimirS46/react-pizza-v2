@@ -33,7 +33,6 @@ export function Sort() {
     const handleClickOutside = (event) => {
       if (!event.path.includes(sortRef.current)) {
         setOpen(false);
-        console.log('Click outside');
       }
     };
 
