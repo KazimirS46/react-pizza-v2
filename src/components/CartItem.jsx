@@ -67,7 +67,7 @@ export const icons = {
   ),
 };
 
-export function CardItem({ productId, title, price, count, imageUrl, type }) {
+export function CardItem({ productId, title, price, count, imageUrl, type, size }) {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -94,7 +94,9 @@ export function CardItem({ productId, title, price, count, imageUrl, type }) {
       </div>
       <div className='cart__item-info'>
         <h3>{title}</h3>
-        <p>{type}, 26 см.</p>
+        <p>
+          {type}, {size} см.
+        </p>
       </div>
       <div className='cart__item-count'>
         <button onClick={onClickMinus} className='button button--outline button--circle cart__item-count-minus'>

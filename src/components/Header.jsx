@@ -31,7 +31,7 @@ const cartIcon = (
 );
 
 export function Header() {
-  const { items, totalPrice } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector((state) => state.cart);
 
   const itemsCount = items.reduce((sum, obj) => obj.count + sum, 0);
 
