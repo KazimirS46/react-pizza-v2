@@ -1,11 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { icons } from '../components/CartItem';
 import { CardItem } from '../components/CartItem';
+import { clearItems } from '../redux/slices/cartSlice';
 
 export const Cart = () => {
+  const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
+
+  const onClickClear = () => {
+    if (window.confirm('Очистить корзину?')) {
+      dispatch(clearItems());
+    }
+  };
 
   return (
     <div className='container container--cart'>
@@ -15,10 +23,10 @@ export const Cart = () => {
             {icons.cart}
             Корзина
           </h2>
-          <div className='cart__clear'>
+          <button onClick={onClickClear} className='cart__clear'>
             {icons.trash}
             <span>Очистить корзину</span>
-          </div>
+          </button>
         </div>
         <div className='content__items'>
           {items.map((item) => (

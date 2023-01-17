@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addItem, minusItem } from '../redux/slices/cartSlice';
+import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
 export const icons = {
   cart: (
@@ -81,6 +81,11 @@ export function CardItem({ productId, title, price, count, imageUrl, type }) {
   const onClickMinus = () => {
     dispatch(minusItem(productId));
   };
+  const onClickRemove = () => {
+    if (window.confirm('Are you sure you want to remove?')) {
+      dispatch(removeItem(productId));
+    }
+  };
 
   return (
     <div className='cart__item'>
@@ -104,7 +109,9 @@ export function CardItem({ productId, title, price, count, imageUrl, type }) {
         <b>{price * count} ₽</b>
       </div>
       <div className='cart__item-remove'>
-        <button className='button button--outline button--circle'>{icons.remove}</button>
+        <button onClick={onClickRemove} className='button button--outline button--circle'>
+          {icons.remove}
+        </button>
       </div>
     </div>
   );
