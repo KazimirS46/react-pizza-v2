@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext, useRef } from 'react';
-import axios from 'axios';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +10,7 @@ import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
 import { Pagination } from '../components/Pagination';
 import { SearchContext } from '../App';
 import { setCategoryId, setCurentPage, setFilters } from '../redux/slices/filterSlice';
-
-const URL = {
-  items: 'https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items',
-};
+import { fetchPizzas } from '../redux/slices/pizzaSlise';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -23,10 +19,10 @@ export const Home = () => {
   const isMounted = useRef(false);
 
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+  const items = useSelector((state) => state.pizza.items);
 
   const sortType = sort.sortProperty;
 
-  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { searchValue } = useContext(SearchContext);
 
@@ -38,15 +34,14 @@ export const Home = () => {
     dispatch(setCurentPage(page));
   };
 
-  const fetchPizzas = async (url) => {
+  const getPizzas = async () => {
+    setIsLoading(true);
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const order = 'desc';
     const search = searchValue ? `&search=${searchValue}` : '';
 
     try {
-      setIsLoading(true);
-      const res = await axios.get(`${url.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`);
-      setItems(res.data);
+      dispatch(fetchPizzas({ category, order, search, sortType, currentPage }));
     } catch (error) {
       alert('Ошибка при получении пицц');
       console.log('ERROR', error);
@@ -89,7 +84,7 @@ export const Home = () => {
 
   useEffect(() => {
     if (!isSearch.current) {
-      fetchPizzas(URL);
+      getPizzas();
     }
     isSearch.current = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
