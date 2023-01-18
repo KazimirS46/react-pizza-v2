@@ -38,6 +38,25 @@ export const Home = () => {
     dispatch(setCurentPage(page));
   };
 
+  const fetchPizzas = async (url) => {
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const order = 'desc';
+    const search = searchValue ? `&search=${searchValue}` : '';
+
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`${url.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`);
+      setItems(res.data);
+    } catch (error) {
+      alert('Ошибка при получении пицц');
+      console.log('ERROR', error);
+    } finally {
+      setIsLoading(false);
+    }
+
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
@@ -65,23 +84,15 @@ export const Home = () => {
       );
       isSearch.current = true;
     }
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     if (!isSearch.current) {
-      const category = categoryId > 0 ? `category=${categoryId}` : '';
-      const order = 'desc';
-      const search = searchValue ? `&search=${searchValue}` : '';
-
-      setIsLoading(true);
-      axios.get(`${URL.items}?page=${currentPage}&limit=4&${category}&sortBy=${sortType}&order=${order}${search}`).then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+      fetchPizzas(URL);
     }
     isSearch.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
