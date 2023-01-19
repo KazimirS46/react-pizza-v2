@@ -42,6 +42,9 @@ const cratSlice = createSlice({
   },
 });
 
+export const selectCart = (state) => state.cart;
+export const selectCartItemById = (productId) => (state) => state.cart.items.find((obj) => obj.productId === productId);
+
 export const { addItem, removeItem, minusItem, clearItems } = cratSlice.actions;
 
 export default cratSlice.reducer;

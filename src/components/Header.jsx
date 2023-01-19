@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Search } from './Search';
+import { selectCart } from '../redux/slices/cartSlice';
 
 const cartIcon = (
   <svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -31,7 +32,7 @@ const cartIcon = (
 );
 
 export function Header() {
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector(selectCart);
 
   const itemsCount = items.reduce((sum, obj) => obj.count + sum, 0);
 
