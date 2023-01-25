@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
 import { Categories } from '../components/Categories';
@@ -77,7 +77,11 @@ export const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
+  const pizzas = items.map((item) => (
+    <Link to={`/pizza/${item.id}`} key={item.productId}>
+      <PizzaBlock {...item} />
+    </Link>
+  ));
   const skeletons = [...new Array(4)].map((_, i) => <ItemPlaceholder key={i} />);
 
   return (
