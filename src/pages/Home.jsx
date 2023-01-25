@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
-import qs from 'qs';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import qs from 'qs';
 
 import { Categories } from '../components/Categories';
 import { Sort, typeOfSorting } from '../components/Sort';
@@ -22,9 +23,9 @@ export const Home = () => {
 
   const sortType = sort.sortProperty;
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = useCallback((id) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   const onChangePage = (page) => {
     dispatch(setCurentPage(page));
@@ -51,7 +52,7 @@ export const Home = () => {
       navigate(`?${queryString}`);
     }
     isMounted.current = true;
-  }, [categoryId, sortType, currentPage, navigate]);
+  }, [categoryId, sortType, currentPage]);
 
   useEffect(() => {
     if (window.location.search) {
@@ -67,7 +68,6 @@ export const Home = () => {
       );
       isSearch.current = true;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,7 +75,6 @@ export const Home = () => {
       getPizzas();
     }
     isSearch.current = false;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const pizzas = items.map((item) => <PizzaBlock key={item.productId} {...item} />);
