@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
 export const FullPizza = () => {
   const [pizza, setPizza] = useState();
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPizza() {
@@ -15,7 +15,8 @@ export const FullPizza = () => {
         const { data } = await axios.get('https://63aaeaf2fdc006ba604fd8b5.mockapi.io/items/' + id);
         setPizza(data);
       } catch (error) {
-        console.error(error);
+        alert('Ошибка при получении пицц');
+        navigate('/');
       }
     }
 
