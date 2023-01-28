@@ -2,7 +2,9 @@ import ReactPaginate from 'react-paginate';
 
 import styles from './Pagination.module.scss';
 
-export const Pagination = ({ currentPage, onChangePage }) => {
+type PaginationProps = { currentPage: number; onChangePage: any };
+
+export const Pagination = ({ currentPage, onChangePage }: PaginationProps) => {
   return (
     <ReactPaginate
       className={styles.root}
@@ -13,7 +15,6 @@ export const Pagination = ({ currentPage, onChangePage }) => {
       pageCount={3}
       forcePage={currentPage - 1}
       previousLabel='<'
-      renderOnZeroPageCount={null}
     />
   );
 };

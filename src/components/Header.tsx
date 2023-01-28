@@ -31,11 +31,11 @@ const cartIcon = (
   </svg>
 );
 
-export function Header() {
+export const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
 
-  const itemsCount = items.reduce((sum, obj) => obj.count + sum, 0);
+  const itemsCount = items.reduce((sum: number, obj: any) => obj.count + sum, 0);
 
   return (
     <div className='header'>
@@ -63,4 +63,4 @@ export function Header() {
       </div>
     </div>
   );
-}
+};

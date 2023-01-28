@@ -1,6 +1,11 @@
-const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+type CategoriesProps = {
+  value: number;
+  onClickCategory: any;
+};
 
-export function Categories({ value, onClickCategory }) {
+export const Categories = ({ value, onClickCategory }: CategoriesProps) => {
+  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
   return (
     <div className='categories'>
       <ul>
@@ -12,4 +17,4 @@ export function Categories({ value, onClickCategory }) {
       </ul>
     </div>
   );
-}
+};

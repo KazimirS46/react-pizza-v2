@@ -5,7 +5,11 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export const FullPizza = () => {
-  const [pizza, setPizza] = useState();
+  const [pizza, setPizza] = useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+  }>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -24,8 +28,9 @@ export const FullPizza = () => {
   }, []);
 
   if (!pizza) {
-    return 'Загрузка...';
+    return <p>Загрузка...</p>;
   }
+
   return (
     <div className='container'>
       <img src={pizza.imageUrl} alt='Pict.' />

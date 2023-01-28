@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-export const ItemPlaceholder = (props) => (
+export const ItemPlaceholder = () => (
   <ContentLoader className='pizza-block' speed={2} width={280} height={459} viewBox='0 0 280 459' backgroundColor='#f3f3f3' foregroundColor='#ecebeb'>
     <circle cx='140' cy='122' r='122' />
     <rect x='0' y='271' rx='5' ry='5' width='280' height='24' />

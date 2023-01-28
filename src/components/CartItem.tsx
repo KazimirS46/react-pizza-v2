@@ -1,6 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
+type CartItemProps = {
+  productId: number;
+  title: string;
+  price: number;
+  count: number;
+  imageUrl: string;
+  type: string;
+  size: number;
+};
+
 export const icons = {
   cart: (
     <svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -67,7 +77,7 @@ export const icons = {
   ),
 };
 
-export function CardItem({ productId, title, price, count, imageUrl, type, size }) {
+export const CartItem = ({ productId, title, price, count, imageUrl, type, size }: CartItemProps) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -117,4 +127,4 @@ export function CardItem({ productId, title, price, count, imageUrl, type, size 
       </div>
     </div>
   );
-}
+};

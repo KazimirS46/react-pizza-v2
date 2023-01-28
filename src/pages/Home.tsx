@@ -23,11 +23,11 @@ export const Home = () => {
 
   const sortType = sort.sortProperty;
 
-  const onChangeCategory = useCallback((id) => {
+  const onChangeCategory = useCallback((id: number) => {
     dispatch(setCategoryId(id));
   }, []);
 
-  const onChangePage = (page) => {
+  const onChangePage = (page: number) => {
     dispatch(setCurentPage(page));
   };
 
@@ -36,7 +36,10 @@ export const Home = () => {
     const order = 'desc';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    dispatch(fetchPizzas({ category, order, search, sortType, currentPage }));
+    dispatch(
+      // @ts-ignore
+      fetchPizzas({ category, order, search, sortType, currentPage })
+    );
 
     window.scrollTo(0, 0);
   };
@@ -77,7 +80,7 @@ export const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const pizzas = items.map((item) => (
+  const pizzas = items.map((item: any) => (
     <Link to={`/pizza/${item.id}`} key={item.productId}>
       <PizzaBlock {...item} />
     </Link>
@@ -88,7 +91,7 @@ export const Home = () => {
     <div className='container'>
       <div className='content__top'>
         <Categories value={categoryId} onClickCategory={onChangeCategory} />
-        <Sort value={sort} />
+        <Sort />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       {status === 'error' ? (
