@@ -1,11 +1,11 @@
 type CategoriesProps = {
   value: number;
-  onClickCategory: any;
+  onClickCategory: (index: number) => void;
 };
 
-export const Categories = ({ value, onClickCategory }: CategoriesProps) => {
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
+export const Categories = ({ value, onClickCategory }: CategoriesProps) => {
   return (
     <div className='categories'>
       <ul>

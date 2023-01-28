@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
 import debounce from 'lodash.debounce';
 import { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -25,7 +26,7 @@ export const Search = () => {
     []
   );
 
-  const onChangeSearchInput = (event: any) => {
+  const onChangeSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchInput(event.target.value);
   };

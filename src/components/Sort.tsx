@@ -1,10 +1,15 @@
+import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSort, setSort } from '../redux/slices/filterSlice';
 
-export type SortItem = {
+type SortItem = {
   name: string;
   sortProperty: string;
+};
+
+type ClickType = MouseEvent & {
+  path: Node[];
 };
 
 export const typeOfSorting: SortItem[] = [
@@ -35,8 +40,9 @@ export const Sort = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as ClickType;
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false);
       }
     };
