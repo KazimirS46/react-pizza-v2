@@ -63,6 +63,8 @@ export const Home = () => {
 
       const sort = typeOfSorting.find((obj) => obj.sortProperty === params.sortProperty);
 
+      console.log(sort);
+
       dispatch(
         setFilters({
           ...params,

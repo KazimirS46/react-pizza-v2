@@ -1,12 +1,6 @@
-import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSort, setSort } from '../redux/slices/filterSlice';
-
-type SortItem = {
-  name: string;
-  sortProperty: string;
-};
+import { SortItem, selectSort, setSort } from '../redux/slices/filterSlice';
 
 type ClickType = MouseEvent & {
   path: Node[];

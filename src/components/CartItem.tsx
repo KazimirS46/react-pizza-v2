@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
+import { SliceCartItem, addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
 type CartItemProps = {
   productId: number;
@@ -84,7 +84,7 @@ export const CartItem = ({ productId, title, price, count, imageUrl, type, size 
     dispatch(
       addItem({
         productId,
-      })
+      } as SliceCartItem)
     );
   };
 
