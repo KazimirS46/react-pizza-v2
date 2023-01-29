@@ -68,6 +68,7 @@ export const Home = () => {
       dispatch(
         setFilters({
           ...params,
+          // @ts-ignore
           sort,
         })
       );
