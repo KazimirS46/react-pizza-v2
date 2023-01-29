@@ -1,15 +1,20 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SortItem, selectSort, setSort } from '../redux/slices/filterSlice';
+import { SortPropertyEnum, selectSort, setSort } from '../redux/slices/filterSlice';
+
+type SortItem = {
+  name: string;
+  sortProperty: SortPropertyEnum;
+};
 
 type ClickType = MouseEvent & {
   path: Node[];
 };
 
 export const typeOfSorting: SortItem[] = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'цене', sortProperty: 'price' },
-  { name: 'алфавиту', sortProperty: 'title' },
+  { name: 'популярности', sortProperty: SortPropertyEnum.RATING },
+  { name: 'цене', sortProperty: SortPropertyEnum.PRICE },
+  { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE },
 ];
 
 const svg = (
