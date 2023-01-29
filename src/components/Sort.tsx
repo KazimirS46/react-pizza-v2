@@ -1,6 +1,7 @@
+import React from 'react';
 import { useRef, useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { SortPropertyEnum, selectSort, setSort } from '../redux/slices/filterSlice';
+import { useDispatch } from 'react-redux';
+import { FilterSortItem, SortPropertyEnum, setSort } from '../redux/slices/filterSlice';
 
 type SortItem = {
   name: string;
@@ -9,6 +10,10 @@ type SortItem = {
 
 type ClickType = MouseEvent & {
   path: Node[];
+};
+
+type SortPopupProps = {
+  value: FilterSortItem;
 };
 
 export const typeOfSorting: SortItem[] = [
@@ -26,9 +31,8 @@ const svg = (
   </svg>
 );
 
-export const Sort = () => {
+export const Sort = React.memo(({ value }: SortPopupProps) => {
   const dispatch = useDispatch();
-  const sort = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
@@ -61,14 +65,14 @@ export const Sort = () => {
             setOpen((prev) => !prev);
           }}
         >
-          {sort.name}
+          {value.name}
         </span>
       </div>
       {open && (
         <div className='sort__popup'>
           <ul>
             {typeOfSorting.map((type, i) => (
-              <li key={i} onClick={() => selectActiveType(type)} className={sort.sortProperty === type.sortProperty ? 'active' : ''}>
+              <li key={i} onClick={() => selectActiveType(type)} className={value.sortProperty === type.sortProperty ? 'active' : ''}>
                 {type.name}
               </li>
             ))}
@@ -77,4 +81,4 @@ export const Sort = () => {
       )}
     </div>
   );
-};
+});

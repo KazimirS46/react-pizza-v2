@@ -1,3 +1,5 @@
+import React from 'react';
+
 type CategoriesProps = {
   value: number;
   onClickCategory: (index: number) => void;
@@ -5,7 +7,7 @@ type CategoriesProps = {
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-export const Categories = ({ value, onClickCategory }: CategoriesProps) => {
+export const Categories = React.memo(({ value, onClickCategory }: CategoriesProps) => {
   return (
     <div className='categories'>
       <ul>
@@ -17,4 +19,4 @@ export const Categories = ({ value, onClickCategory }: CategoriesProps) => {
       </ul>
     </div>
   );
-};
+});

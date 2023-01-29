@@ -79,18 +79,14 @@ export const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const pizzas = items.map((item: any) => (
-    <Link to={`/pizza/${item.id}`} key={item.productId}>
-      <PizzaBlock {...item} />
-    </Link>
-  ));
+  const pizzas = items.map((item: any) => <PizzaBlock {...item} key={item.id} />);
   const skeletons = [...new Array(4)].map((_, i) => <ItemPlaceholder key={i} />);
 
   return (
     <div className='container'>
       <div className='content__top'>
         <Categories value={categoryId} onClickCategory={onChangeCategory} />
-        <Sort />
+        <Sort value={sort} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       {status === 'error' ? (
