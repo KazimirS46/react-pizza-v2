@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { icons } from '../components/CartItem';
 import { CartItem } from '../components/CartItem';
 import { CartEmpty } from '../components/CartEmpty';
-import { selectCart } from '../redux/slices/cart/selectors';
-import { clearItems } from '../redux/slices/cart/slice';
+import { selectCart } from '../redux/cart/selectors';
+import { clearItems } from '../redux/cart/slice';
 
 export const Cart = () => {
   const dispatch = useDispatch();

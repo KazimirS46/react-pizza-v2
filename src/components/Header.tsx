@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Search } from './Search';
-import { selectCart } from '../redux/slices/cart/selectors';
+import { selectCart } from '../redux/cart/selectors';
 
 const cartIcon = (
   <svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -59,7 +59,7 @@ export const Header = () => {
             </div>
           </div>
         </Link>
-        <Search />
+        {location.pathname !== '/cart' && <Search />}
         <div className='header__cart'>
           {location.pathname !== '/cart' && (
             <Link to='/cart' className='button button--cart'>
