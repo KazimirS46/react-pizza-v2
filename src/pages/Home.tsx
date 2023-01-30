@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
 import Sort, { typeOfSorting } from '../components/Sort';
@@ -14,6 +14,7 @@ import { selectFilters } from '../redux/fiter/seletors';
 import { selectPizzas } from '../redux/pizzas/selectors';
 import { fetchPizzas } from '../redux/pizzas/asyncActions';
 import Categories from '../components/Categories';
+import { SearchPizzaParams } from '../redux/pizzas/types';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -44,35 +45,35 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const queryString = qs.stringify({
-  //       sortProperty: sortType,
-  //       categoryId,
-  //       currentPage,
-  //     });
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sortType,
+        categoryId,
+        currentPage,
+      });
 
-  //     navigate(`?${queryString}`);
-  //   }
-  //   isMounted.current = true;
-  // }, [categoryId, sortType, currentPage]);
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sortType, currentPage]);
 
-  // useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
-  //     const sort = typeOfSorting.find((obj) => obj.sortProperty === params.sortType);
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
+      const sort = typeOfSorting.find((obj) => obj.sortProperty === params.sortType);
 
-  //     dispatch(
-  //       setFilters({
-  //         searchValue: params.search,
-  //         categoryId: Number(params.category),
-  //         currentPage: params.currentPage,
-  //         sort: sort || typeOfSorting[0],
-  //       })
-  //     );
-  //     isSearch.current = true;
-  //   }
-  // }, []);
+      dispatch(
+        setFilters({
+          searchValue: params.search,
+          categoryId: Number(params.category),
+          currentPage: params.currentPage,
+          sort: sort || typeOfSorting[0],
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
 
   useEffect(() => {
     if (!isSearch.current) {
