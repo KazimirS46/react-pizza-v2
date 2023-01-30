@@ -32,7 +32,7 @@ const PizzaBlock = ({ productId, title, price, imageUrl, sizes, types }: PizzaBl
 
   return (
     <div className='pizza-block'>
-      <Link to={`/pizza/${productId}`}>
+      <Link to={`/react-pizza-v2/pizza/${productId}`}>
         <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
         <h4 className='pizza-block__title'>{title}</h4>
       </Link>

@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='container'>
-        <Link to='/'>
+        <Link to='/react-pizza-v2/'>
           <div className='header__logo'>
             <img width='38' src={logoSvg} alt='Pizza logo' />
             <div>
@@ -62,7 +62,7 @@ const Header = () => {
         {location.pathname !== '/cart' && <Search />}
         <div className='header__cart'>
           {location.pathname !== '/cart' && (
-            <Link to='/cart' className='button button--cart'>
+            <Link to='/react-pizza-v2/cart' className='button button--cart'>
               <span>{totalPrice} ₽</span>
               <div className='button__delimiter'></div>
               {cartIcon}
