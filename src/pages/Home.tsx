@@ -9,9 +9,11 @@ import { Sort, typeOfSorting } from '../components/Sort';
 import { PizzaBlock } from '../components/PizzaBlock';
 import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
 import { Pagination } from '../components/Pagination';
-import { selectFilters, setCategoryId, setCurentPage, setFilters } from '../redux/slices/filterSlice';
-import { SearchPizzaParams, fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlise';
+import { setCategoryId, setCurentPage, setFilters } from '../redux/slices/fiter/slice';
+import { fetchPizzas } from '../redux/slices/pizzas/slice';
 import { useAppDispatch } from '../redux/store';
+import { selectFilters } from '../redux/slices/fiter/seletors';
+import { selectPizzas } from '../redux/slices/pizzas/selectors';
 
 export const Home = () => {
   const navigate = useNavigate();

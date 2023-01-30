@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { SliceCartItem, addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
+import { addItem, minusItem, removeItem } from '../redux/slices/cart/slice';
+import { SliceCartItem } from '../redux/slices/cart/types';
 
 export const icons = {
   cart: (
