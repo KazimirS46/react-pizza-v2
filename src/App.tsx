@@ -16,7 +16,7 @@ function App() {
       <Header />
       <div className='content'>
         <Routes>
-          <Route index element={<Home />} />
+          <Route path='/react-pizza-v2' element={<Home />} />
           <Route
             path='/cart'
             element={
