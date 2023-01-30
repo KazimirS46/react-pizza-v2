@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Search } from './Search';
@@ -34,8 +35,17 @@ const cartIcon = (
 export const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
+  const isMounted = useRef(false);
 
   const itemsCount = items.reduce((sum: number, obj: any) => obj.count + sum, 0);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem('cart', json);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className='header'>
