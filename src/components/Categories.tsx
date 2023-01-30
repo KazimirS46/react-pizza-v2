@@ -7,7 +7,7 @@ type CategoriesProps = {
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-export const Categories = React.memo(({ value, onClickCategory }: CategoriesProps) => {
+const Categories = React.memo(({ value, onClickCategory }: CategoriesProps) => {
   return (
     <div className='categories'>
       <ul>
@@ -20,3 +20,5 @@ export const Categories = React.memo(({ value, onClickCategory }: CategoriesProp
     </div>
   );
 });
+
+export default Categories;

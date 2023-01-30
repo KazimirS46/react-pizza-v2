@@ -10,7 +10,7 @@ type PizzaBlockProps = { productId: number; title: string; price: number; imageU
 
 const typesOfPizzas = ['тонкое', 'традиционное'];
 
-export const PizzaBlock = ({ productId, title, price, imageUrl, sizes, types }: PizzaBlockProps) => {
+const PizzaBlock = ({ productId, title, price, imageUrl, sizes, types }: PizzaBlockProps) => {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItemById(productId));
   const [activeSize, setActiveSize] = useState(0);
@@ -68,3 +68,5 @@ export const PizzaBlock = ({ productId, title, price, imageUrl, sizes, types }: 
     </div>
   );
 };
+
+export default PizzaBlock;

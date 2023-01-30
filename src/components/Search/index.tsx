@@ -8,7 +8,7 @@ import styles from './Search.module.scss';
 
 import { setSearchValue } from '../../redux/fiter/slice';
 
-export const Search = () => {
+const Search = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const searchField = useRef<HTMLInputElement>(null);
@@ -54,3 +54,5 @@ export const Search = () => {
     </div>
   );
 };
+
+export default Search;

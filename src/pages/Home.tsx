@@ -4,18 +4,18 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
-import { Categories } from '../components/Categories';
-import { Sort, typeOfSorting } from '../components/Sort';
-import { PizzaBlock } from '../components/PizzaBlock';
-import { ItemPlaceholder } from '../components/PizzaBlock/ItemPlaceholder';
-import { Pagination } from '../components/Pagination';
+import Sort, { typeOfSorting } from '../components/Sort';
+import PizzaBlock from '../components/PizzaBlock';
+import ItemPlaceholder from '../components/PizzaBlock/ItemPlaceholder';
+import Pagination from '../components/Pagination';
 import { setCategoryId, setCurentPage, setFilters } from '../redux/fiter/slice';
 import { useAppDispatch } from '../redux/store';
 import { selectFilters } from '../redux/fiter/seletors';
 import { selectPizzas } from '../redux/pizzas/selectors';
 import { fetchPizzas } from '../redux/pizzas/asyncActions';
+import Categories from '../components/Categories';
 
-export const Home = () => {
+const Home = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isSearch = useRef(false);
@@ -103,3 +103,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

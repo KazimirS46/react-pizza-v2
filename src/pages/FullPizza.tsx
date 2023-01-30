@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-export const FullPizza = () => {
+const FullPizza = () => {
   const [pizza, setPizza] = useState<{
     imageUrl: string;
     title: string;
@@ -39,3 +39,5 @@ export const FullPizza = () => {
     </div>
   );
 };
+
+export default FullPizza;

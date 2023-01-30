@@ -32,7 +32,7 @@ const svg = (
   </svg>
 );
 
-export const Sort = React.memo(({ value }: SortPopupProps) => {
+const Sort = React.memo(({ value }: SortPopupProps) => {
   const dispatch = useDispatch();
   const sortRef = useRef<HTMLDivElement>(null);
 
@@ -83,3 +83,5 @@ export const Sort = React.memo(({ value }: SortPopupProps) => {
     </div>
   );
 });
+
+export default Sort;

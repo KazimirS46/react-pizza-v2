@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
-import { Search } from './Search';
+import Search from './Search';
 import { selectCart } from '../redux/cart/selectors';
 
 const cartIcon = (
@@ -32,7 +32,7 @@ const cartIcon = (
   </svg>
 );
 
-export const Header = () => {
+const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
   const isMounted = useRef(false);
@@ -74,3 +74,5 @@ export const Header = () => {
     </div>
   );
 };
+
+export default Header;

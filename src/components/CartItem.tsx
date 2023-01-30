@@ -68,7 +68,7 @@ export const icons = {
   ),
 };
 
-export const CartItem = ({ productId, title, price, count, imageUrl, type, size }: SliceCartItem) => {
+const CartItem = ({ productId, title, price, count, imageUrl, type, size }: SliceCartItem) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -119,3 +119,5 @@ export const CartItem = ({ productId, title, price, count, imageUrl, type, size 
     </div>
   );
 };
+
+export default CartItem;
