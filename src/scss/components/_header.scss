@@ -29,4 +29,54 @@
       color: #7b7b7b;
     }
   }
+
+  @media (max-width: 1024px) {
+    &__logo {
+      img {
+        width: 30px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      padding: 20px 0;
+
+      .container {
+        flex-wrap: wrap;
+
+        .header__logo--link {
+          margin-bottom: 20px;
+          order: 0;
+
+          .header__logo {
+            img {
+              width: 30px;
+              margin-right: 10px;
+            }
+
+            h1 {
+              font-size: 16px;
+            }
+
+            p {
+              font-size: 10px;
+            }
+          }
+        }
+
+        .header__cart {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
 }

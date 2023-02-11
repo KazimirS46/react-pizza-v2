@@ -53,3 +53,10 @@ a {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
 }
+
+@media (max-width: 1024px) {
+  h2 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}

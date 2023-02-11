@@ -8,8 +8,7 @@
   min-width: 100px;
   text-align: center;
   cursor: pointer;
-  transition: background-color $duration ease-in-out,
-    border-color $duration ease-in-out;
+  transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
   border: 1px solid transparent;
   @include noselect();
 
@@ -94,6 +93,12 @@
     background-color: rgba(255, 255, 255, 0.25);
     margin-left: 14px;
     margin-right: 14px;
+
+    @media (max-width: 1024px) {
+      & {
+        margin: 0 10px;
+      }
+    }
   }
 
   &--add {
@@ -144,6 +149,32 @@
     span {
       font-weight: 600;
       font-size: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      & {
+        padding: 10px 20px;
+
+        span {
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      & {
+        padding: 5px 15px;
+
+        span {
+          font-weight: 600;
+          font-size: 12px;
+        }
+
+        svg {
+          width: 15px;
+        }
+      }
     }
   }
 }

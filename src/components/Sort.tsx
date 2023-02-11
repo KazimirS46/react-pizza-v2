@@ -60,7 +60,7 @@ const Sort = React.memo(({ value }: SortPopupProps) => {
     <div ref={sortRef} className='sort'>
       <div className='sort__label'>
         {svg}
-        <b>Сортировка по:</b>
+        <b>Сортировка&nbsp;по:</b>
         <span
           onClick={() => {
             setOpen((prev) => !prev);

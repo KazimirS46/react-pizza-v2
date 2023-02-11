@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='container'>
-        <Link to='/'>
+        <Link to='/react-pizza-v2' className='header__logo--link'>
           <div className='header__logo'>
             <img width='38' src={logoSvg} alt='Pizza logo' />
             <div>

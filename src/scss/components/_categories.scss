@@ -29,4 +29,40 @@
       }
     }
   }
+
+  @media (max-width: 1280px) {
+    & {
+      padding: 10px 0;
+      overflow: scroll;
+
+      ul {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    & {
+      ul {
+        li {
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    & {
+      padding: 5px 0;
+      margin-bottom: 15px;
+
+      ul {
+        font-size: 12px;
+
+        li {
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
 }

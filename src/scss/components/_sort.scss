@@ -2,6 +2,7 @@
 
 .sort {
   position: relative;
+
   &__label {
     display: flex;
     align-items: center;
@@ -18,6 +19,13 @@
       color: $orange;
       border-bottom: 1px dashed $orange;
       cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      & {
+        margin: 0 auto;
+        justify-content: center;
+      }
     }
   }
 
@@ -48,6 +56,19 @@
           color: $orange;
         }
       }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    & {
+      width: 260px;
+      margin-left: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      font-size: 12px;
     }
   }
 }
