@@ -87,20 +87,29 @@ const Home = () => {
 
   return (
     <div className='container'>
-      <div className='content__top'>
+      {status !== 'error' && (
+        <>
+          <div className='content__top'>
+            <Categories value={categoryId} onClickCategory={onChangeCategory} />
+            <Sort value={sort} />
+          </div>
+          <h2 className='content__title'>Все пиццы</h2>
+        </>
+      )}
+      {/* <div className='content__top'>
         <Categories value={categoryId} onClickCategory={onChangeCategory} />
         <Sort value={sort} />
       </div>
-      <h2 className='content__title'>Все пиццы</h2>
+      <h2 className='content__title'>Все пиццы</h2> */}
       {status === 'error' ? (
-        <div>
+        <div className='content__error'>
           <h2>Ошибка нахуй</h2>
           <p>Чет произошло</p>
         </div>
       ) : (
         <div className='content__items'>{status === 'loading' ? skeletons : pizzas}</div>
       )}
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {status !== 'error' && <Pagination currentPage={currentPage} onChangePage={onChangePage} />}
     </div>
   );
 };
