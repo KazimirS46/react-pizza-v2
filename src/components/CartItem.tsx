@@ -93,28 +93,32 @@ const CartItem = ({ productId, title, price, count, imageUrl, type, size }: Slic
       <div className='cart__item-img'>
         <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
       </div>
-      <div className='cart__item-info'>
-        <h3>{title}</h3>
-        <p>
-          {type}, {size} см.
-        </p>
-      </div>
-      <div className='cart__item-count'>
-        <button disabled={count === 1} onClick={onClickMinus} className='button button--outline button--circle cart__item-count-minus'>
-          {icons.minus}
-        </button>
-        <b>{count}</b>
-        <button onClick={onClickPlus} className='button button--outline button--circle cart__item-count-plus'>
-          {icons.plus}
-        </button>
-      </div>
-      <div className='cart__item-price'>
-        <b>{price * count} ₽</b>
-      </div>
-      <div className='cart__item-remove'>
-        <button onClick={onClickRemove} className='button button--outline button--circle'>
-          {icons.remove}
-        </button>
+      <div className='cart__item-content'>
+        <div className='cart__item-info'>
+          <h3>{title}</h3>
+          <p>
+            {type}, {size} см.
+          </p>
+        </div>
+        <div className='cart__item-change-field'>
+          <div className='cart__item-count'>
+            <button disabled={count === 1} onClick={onClickMinus} className='button button--outline button--circle cart__item-count-minus'>
+              {icons.minus}
+            </button>
+            <b>{count}</b>
+            <button onClick={onClickPlus} className='button button--outline button--circle cart__item-count-plus'>
+              {icons.plus}
+            </button>
+          </div>
+          <div className='cart__item-price'>
+            <b>{price * count} ₽</b>
+          </div>
+          <div className='cart__item-remove'>
+            <button onClick={onClickRemove} className='button button--outline button--circle'>
+              {icons.remove}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

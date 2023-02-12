@@ -42,6 +42,15 @@
     min-width: 32px;
     padding: 0;
     border-width: 2px;
+
+    @media (max-width: 768px) {
+      & {
+        width: 30px;
+        height: 30px;
+        min-width: 5px;
+        border-radius: 50%;
+      }
+    }
   }
 
   &--black {

@@ -31,6 +31,8 @@
   }
 
   @media (max-width: 1024px) {
+    padding: 20px 0;
+
     &__logo {
       img {
         width: 30px;
@@ -76,6 +78,17 @@
         .header__cart {
           margin-bottom: 20px;
         }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    & {
+      padding: 0;
+      padding-top: 20px;
+
+      .container {
+        flex-direction: column;
       }
     }
   }
