@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path='/react-pizza-v2' element={<Home />} />
           <Route
-            path='/cart'
+            path='/react-pizza-v2/cart'
             element={
               <React.Suspense fallback={<Downloading />}>
                 <Cart />
@@ -26,7 +26,7 @@ function App() {
             }
           />
           <Route
-            path='/pizza/:id'
+            path='/react-pizza-v2/pizza/:id'
             element={
               <React.Suspense fallback={<Downloading />}>
                 <FullPizza />
@@ -34,7 +34,7 @@ function App() {
             }
           />
           <Route
-            path='*'
+            path='/react-pizza-v2/*'
             element={
               <React.Suspense fallback={<Downloading />}>
                 <NotFoundPage />
