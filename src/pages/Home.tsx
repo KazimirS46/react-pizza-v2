@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
-import Sort, { typeOfSorting } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import ItemPlaceholder from '../components/PizzaBlock/ItemPlaceholder';
 import Pagination from '../components/Pagination';
+import Sort, { typeOfSorting } from '../components/Sort';
 import { setCategoryId, setCurentPage, setFilters } from '../redux/fiter/slice';
 import { useAppDispatch } from '../redux/store';
 import { selectFilters } from '../redux/fiter/seletors';
@@ -96,11 +96,6 @@ const Home = () => {
           <h2 className='content__title'>Все пиццы</h2>
         </>
       )}
-      {/* <div className='content__top'>
-        <Categories value={categoryId} onClickCategory={onChangeCategory} />
-        <Sort value={sort} />
-      </div>
-      <h2 className='content__title'>Все пиццы</h2> */}
       {status === 'error' ? (
         <div className='content__error'>
           <h2>Ошибка нахуй</h2>

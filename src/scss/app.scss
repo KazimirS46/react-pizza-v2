@@ -112,6 +112,7 @@ button:disabled {
   @media (max-width: 425px) {
     & {
       padding: 0;
+      padding-bottom: 20px;
     }
     &__items {
       flex-direction: column;
