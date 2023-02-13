@@ -59,7 +59,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        {location.pathname !== '/cart' && (
+        {location.pathname !== '/react-pizza-v2/cart' && (
           <>
             <Search />
             <div className='header__cart'>

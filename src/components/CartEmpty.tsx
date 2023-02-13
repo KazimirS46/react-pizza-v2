@@ -7,7 +7,7 @@ const CartEmpty = () => {
     <div className='container container--cart'>
       <div className='cart cart--empty'>
         <h2>
-          Корзина пустая <span>😕</span>
+          Корзина пустая <span className='smile'>😕</span>
         </h2>
         <p>
           Вероятней всего, вы не заказывали ещё пиццу.

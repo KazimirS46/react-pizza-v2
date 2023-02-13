@@ -215,67 +215,6 @@ button:disabled {
     }
   }
 
-  @media (max-width: 1024px) {
-    & {
-      width: 70%;
-      margin: 0 auto;
-
-      &__top {
-        width: 100%;
-      }
-
-      .content__title {
-        font-size: 25px;
-
-        svg {
-          width: 25px;
-          height: 25px;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    & {
-      .content__title {
-        font-size: 20px;
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 425px) {
-    & {
-      width: 100%;
-      .content__title {
-        margin-left: 20px;
-      }
-      &__top {
-        display: none;
-        margin-top: 15px;
-      }
-      &__clear {
-        display: none;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    & {
-      span {
-        font-size: 16px;
-      }
-
-      svg {
-        width: 18px;
-      }
-    }
-  }
-
   &__item {
     display: flex;
     width: 80%;
@@ -296,7 +235,7 @@ button:disabled {
       width: 25%;
 
       img {
-        width: 150px;
+        width: 80px;
         height: auto;
       }
 
@@ -409,6 +348,7 @@ button:disabled {
 
       &-img {
         width: auto;
+        margin-right: 10px;
       }
 
       &-info {
@@ -428,7 +368,7 @@ button:disabled {
       }
 
       &-count {
-        width: 32%;
+        width: 40%;
         button {
           min-width: 3px;
           width: 24px;
@@ -475,12 +415,12 @@ button:disabled {
           height: 20px;
         }
         b {
-          font-size: 16px;
+          font-size: 15px;
         }
       }
       &-price {
         b {
-          font-size: 16px;
+          font-size: 15px;
         }
       }
       &-remove {
@@ -493,6 +433,10 @@ button:disabled {
     }
 
     @media (max-width: 425px) {
+      & {
+        width: 100%;
+      }
+
       &:first-child {
         margin-top: 0;
         border-top: none;
@@ -512,10 +456,10 @@ button:disabled {
         justify-content: space-between;
         align-items: center;
         h3 {
-          font-size: 18px;
+          font-size: 15px;
         }
         p {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
 
@@ -523,6 +467,7 @@ button:disabled {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
       }
 
       &-count {
@@ -544,6 +489,28 @@ button:disabled {
           width: 26px;
           height: 26px;
         }
+      }
+    }
+
+    @media (max-width: 375px) {
+      &-count {
+        width: 35%;
+      }
+    }
+
+    @media (max-width: 320px) {
+      &-info {
+        h3 {
+          font-size: 14px;
+          line-height: 16px;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+
+      &-count {
+        width: 42%;
       }
     }
   }
@@ -671,6 +638,20 @@ button:disabled {
         }
       }
     }
+
+    @media (max-width: 320px) {
+      & {
+        margin: 25px 0;
+      }
+
+      &-buttons {
+        .go-back-btn,
+        .pay-btn {
+          width: 110px;
+          padding: 7px;
+        }
+      }
+    }
   }
 
   &--empty {
@@ -707,6 +688,102 @@ button:disabled {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    & {
+      width: 70%;
+      margin: 20px auto;
+
+      &__top {
+        width: 100%;
+      }
+
+      .content__title {
+        font-size: 25px;
+
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      .content__title {
+        font-size: 20px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      span {
+        font-size: 16px;
+      }
+
+      svg {
+        width: 18px;
+      }
+    }
+
+    &--empty {
+      h2,
+      .smile {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      img {
+        width: 200px;
+      }
+
+      .button--black {
+        padding: 10px 0 12px;
+        font-size: unset;
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    & {
+      width: 100%;
+      .content__title {
+        margin-left: 20px;
+      }
+      &__top {
+        display: none;
+        margin-top: 15px;
+      }
+      &__clear {
+        display: none;
+      }
+    }
+
+    &--empty {
+      h2,
+      .smile {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    & {
+      span {
+        font-size: 12px;
+      }
     }
   }
 }
